@@ -123,7 +123,7 @@ mod_cpu() {
 mod_wireless() {
 	local status=$(ifconfig $wlinterface | awk '/status:/ {print $2}')
 	local id=$(ifconfig $wlinterface | awk '/(nwid|join)/ {print $3}')
-	local active=$(ifconfig trunk0 | awk '/('$wlinterface').*(master)/')
+	local active=$(ifconfig $netinterface | awk '/('$wlinterface').*(master)/')
 
 	if [ "$active" != "" ]; then
 		if [ "$status" == "active" ]; then
